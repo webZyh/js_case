@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>中部导航吸顶</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            border: none;
+        }
+        img{
+            vertical-align: top;
+            width: 100%;
+        }
+        #nav div{
+            height: 50px;
+            background-color: pink;
+            text-align: center;
+            line-height: 50px;
+        }
+        #sect{
+            width: 70%;
+            margin: 0 auto;
+        }
+        .nav{
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+<header id="head">
+    <img src="images/top.png" alt="">
+</header>
+<nav id="nav" class="">
+    <div>导航条</div>
+</nav>
+<section id="sect">
+    <img src="images/body01.png" alt="">
+    <img src="images/body02.png" alt="">
+</section>
+</body>
+<script src="js/func.js"></script>
+<script>
+    window.onload = function(){
+        window.onscroll = function(){
+            var scrollTop = scroll().top;
+            var headerH = $("head").offsetHeight;
+            //console.log(headerH);
+            if(scrollTop >= headerH){
+                $('nav').className = 'nav';
+            }else{
+                $('nav').className = '';
+            }
+        }
+    }
+</script>
+</html>

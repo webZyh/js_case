@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            border:none;
+        }
+        p{
+            margin: 100px;
+            width: 300px;
+        }
+        #share{
+            position: absolute;
+            width: 26px;
+            height: 26px;
+            background:url("images/share.gif") no-repeat;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<p id="word">解放东路卡设计费的卢卡斯街坊邻居阿里舒服啦福建阿老师的减肥啦设计费啦发生分解撒打飞机熬时间发圣诞节地方撒娇莲富大厦发按时交付拉丝机法拉盛解放东路卡设计费的卢卡斯街坊邻居阿里舒服啦福建阿老师的减肥啦设计费啦发生分解撒打飞机熬时间发圣诞节地方撒娇莲富大厦发按时交付拉丝机法拉盛圣诞节地方撒娇莲富大厦发按时交付拉丝机法拉盛解放东路卡设计费的卢卡斯街坊邻居阿里舒服啦福建阿老师的减肥啦设计费啦发生分解撒打飞机熬时间发圣诞节地方撒娇莲富大厦发按时交付拉丝机法</p>
+<span id="share"></span>
+</body>
+<script src="func.js"></script>
+<script>
+    window.onload = function(){
+        var selectedText;
+        //监听鼠标抬起
+        $('word').onmouseup = function(event){
+            //兼容
+            var e = event  || window.event;
+
+            //**************获取选中的文字**************
+            if(window.getSelection){
+                selectedText = window.getSelection().toString();
+            }else{
+                selectedText = document.selection.createRange().text;
+            }
+
+            if( selectedText !== ''){
+                //定位鼠标抬起时的位置，将其赋给share
+                $('share').style.display = 'block';
+                $('share').style.left = e.clientX + 10 + 'px';
+                $('share').style.top = e.clientY + 10 + 'px';
+            }
+
+            //console.log(selectedText);
+            //$('share').innerText = selectedText;
+        };
+
+        //点击document时，弹出物消失
+        document.onmousedown = function(event){
+            var ev = event || window.event;
+            //获取点击对象的id
+            var targetId = ev.target ? ev.target.id : ev.srcElement.id;
+            if(targetId != 'share'){
+                $('share').style.display = 'none';
+            }
+            //window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
+        }
+        $('share').onclick = function(){
+            window.location.href = 'http://v.t.sina.com.cn/share/share.php?searchPic=false&title=' + selectedText ;
+        }
+
+    }
+</script>
+</html>

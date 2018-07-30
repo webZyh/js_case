@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>返回顶部</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            border: none;
+        }
+        body{
+            background-color: #ccc;
+        }
+        p{
+            height: 50px;
+            text-align: center;
+        }
+        #back_top{
+            width: 43px;
+            height: 43px;
+            background: url("images/back_top.png") no-repeat;
+            position: fixed;
+            bottom: 30px;
+            right: 10px;
+            background-size: 100% 100%;
+            cursor: pointer;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<span id="back_top"></span>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+<p>今天天气很好</p>
+</body>
+<script src="js/func.js"></script>
+<script>
+    window.onload = function(){
+        var scrollTop = 0;
+        var begin = 0, end = 0, timer = null;
+        window.onscroll = function(){
+            scrollTop = scroll().top ;
+            //console.log(scrollTop);
+            if (scrollTop >= 500) {
+                show($('back_top'))
+            } else {
+                hide($('back_top'));
+            }
+            begin = scrollTop;
+        }
+
+        $('back_top').onclick = function(){
+            clearInterval(timer);
+            timer = setInterval(function(){
+                begin = begin + (end - begin)*0.2;
+                window.scrollTo(0,begin);
+                if(Math.round(begin) === end){
+                    clearInterval(timer);
+                }
+                //console.log(begin , end);
+            },20)
+        }
+    }
+</script>
+</html>

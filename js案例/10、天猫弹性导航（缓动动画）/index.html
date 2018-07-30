@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>天猫弹性导航</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        body{
+            background-color: pink;
+        }
+        #nav{
+            width: 900px;
+            height: 63px;
+            background:#fff url("images/doubleOne.png") no-repeat right center;
+            border-radius: 5px;
+            position: relative;
+            margin: 100px auto;
+        }
+        #nav ul{
+            position: relative;
+        }
+        #nav ul li{
+            float: left;
+            width: 88px;
+            height: 63px;
+            text-align: center;
+            line-height: 70px;
+            cursor: pointer;
+        }
+        #nav #t_cat{
+            width: 88px;
+            height: 63px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: url("images/tMall.png") no-repeat;
+        }
+    </style>
+</head>
+<body>
+<nav id="nav">
+    <span id="t_cat"></span>
+    <ul>
+        <li>双11狂欢</li>
+        <li>服装会场</li>
+        <li>数码家电</li>
+        <li>家具建材</li>
+        <li>母婴童装</li>
+        <li>手机会场</li>
+        <li>美妆会场</li>
+        <li>进口会场</li>
+        <li>飞猪旅行</li>
+    </ul>
+</nav>
+</body>
+<script>
+    window.onload = function(){
+        var oTcat = $('t_cat');
+        var aLi = $('nav').children[1].children;
+
+        var beginX = 0; //记录鼠标按下时的位置
+
+        //定义缓动运动
+        //定义变量
+        var begin = 0; end = 0;
+        var timer = null;
+        clearInterval(timer);
+        timer = setInterval(function(){
+            begin = begin + (end - begin) * 0.1;
+            oTcat.style.left = begin + 'px';
+        },10)
+
+        //添加事件,由于上面的定时器，所有只要改变end的值就能改变oTcat的位置
+        for(var i=0; i<aLi.length; i++){
+            aLi[i].onmouseover = function(){
+                end = this.offsetLeft;
+            }
+
+            aLi[i].onmousedown = function(){
+                beginX = this.offsetLeft;
+            }
+
+            aLi[i].onmouseout = function(){
+                end = beginX;
+            }
+        }
+
+
+    }
+    function $(id){
+        return typeof id === "string" ? document.getElementById(id) : null;
+    }
+</script>
+</html>

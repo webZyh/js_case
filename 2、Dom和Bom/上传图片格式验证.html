@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<label>上传图片</label>
+<input type="file" id="file" name="">
+</body>
+<script type="text/javascript">
+	window.onload = function(){
+		var oFile = document.getElementById('file');
+		//onchange事件，作用域内的内容改变时触发
+		oFile.onchange = function(){
+			var fileStr = oFile.value;
+			//截取上传文件的后缀
+			//lastIndexOf:从字符串后面开始找".",找到后返回一个数字（位置）
+			var suffix = fileStr.slice(fileStr.lastIndexOf('.'));
+			//忽略截取的后缀的大小写
+			var lowerSuffix = suffix.toLowerCase();
+			//判断是否符合上传规范
+			if(lowerSuffix == '.png' || lowerSuffix == 'jpg'){
+				alert('合法')
+			}else{
+				return false;
+			}
+		}
+	}
+</script>
+</html>

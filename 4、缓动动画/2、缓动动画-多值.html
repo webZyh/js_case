@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box{
+            margin-top: 100px;
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            background-color: red;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+<button id="btn1">向左运动</button>
+<button id="btn2">向右运动</button>
+<div id="box"></div>
+<script src="js/func.js"></script>
+<script>
+    window.onload = function(){
+        $("btn2").onclick = function(){
+            buffer2($("box") , {"left": 200 , "top": 200})
+        }
+        $("btn1").onclick = function(){
+            buffer2($("box") , {"left":0 , "top":0})
+        }
+    }
+</script>
+</body>
+</html>

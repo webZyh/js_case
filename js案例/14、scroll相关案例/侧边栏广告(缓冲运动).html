@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>侧边栏广告</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            border: none;
+        }
+        img{
+            vertical-align: top;
+        }
+        #aside{
+            position: absolute;
+            top: 25%;
+            left: 0;
+        }
+        #aside .img-box img{
+            width: 100px;
+        }
+    </style>
+</head>
+<body style="height: 3000px;">
+<div id="aside">
+    <div class="img-box">
+        <img src="images/float.jpg" alt="">
+    </div>
+</div>
+</body>
+<script src="js/func.js"></script>
+<script>
+    window.onload = function(){
+        var oAside = $('aside');
+        var boxTop = oAside.offsetTop;
+        var begin = 0, end = 0, timer = null;
+        window.onscroll = function(){
+            var scrollTop = scroll().top;
+            end = boxTop + scrollTop;
+            clearInterval(timer);
+            timer = setInterval(function(){
+                begin = begin + (end - begin)*0.2;
+                oAside.style.top = begin + 'px';
+                //console.log(begin , end);
+                //清除定时器
+                if(Math.round(begin) === end){
+                    clearInterval(timer);
+                }
+            },20)
+        }
+
+    }
+</script>
+</html>

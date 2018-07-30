@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>抢购倒计时</title>
+    <style>
+        #count_down{
+            text-align: center;
+            font-size: 40px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div id="count_down"></div>
+</body>
+<script>
+    window.onload = function(){
+        //1、往Date()构造函数中传入日期，获取标准时间
+        //2、结束时间 标准时间
+        var endDate = new Date('2018/04/01 00:00:00');
+
+        countDown();    //先调用一次，防止进入页面时空白
+
+        //由于当前时间是在走动，所有要在定时器中获取
+        var timer = setInterval(countDown,1000);
+
+        //定时器调用实现功能的函数
+        function countDown(){
+            //3、当前时间 标准时间
+            var nowDate = new Date();
+
+            //4、使用标准时间获取对应的时间戳
+            var endTime = endDate.getTime();
+            var nowTime = nowDate.getTime();
+
+            //5、计算倒计时的毫秒数,并转换成秒数
+            var countTime = parseInt((endTime - nowTime)/1000);
+
+            //6、通过计算出的毫秒数计算年月日时分秒
+            var d = parseInt(countTime / 3600 /24) ;
+            var h = parseInt(countTime / 3600 %24);
+            var m = parseInt(countTime / 60 % 60);
+            var s = parseInt(countTime % 60);
+
+            //将得到的数据插入dom中
+            document.getElementById('count_down').innerText = '离抢购结束还剩'+double(d)+'日'+double(h)+'时'+double(m)+'分'+double(s)+'秒'
+        }
+        //当时间数字为各位数时，在前面加0
+        function double(n){
+            return n>=10 ? n : '0'+n;
+        }
+    }
+</script>
+</html>

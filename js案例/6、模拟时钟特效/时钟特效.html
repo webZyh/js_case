@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>时钟特效</title>
+    <style>
+        #box{
+            width: 600px;
+            height: 600px;
+            position: relative;
+            background: url("images/clock.jpg") no-repeat;
+            margin: 10px auto;
+        }
+        #hour,#minute,#second{
+            position: absolute;
+            width: 30px;
+            height: 600px;
+            left: 50%;
+            top: 0;
+            margin-left: -15px;
+        }
+        #hour{
+            background: url("images/hour.png") no-repeat center center;
+        }
+        #minute{
+            background: url("images/minute.png") no-repeat center center;
+        }
+        #second{
+            background: url("images/second.png") no-repeat center center;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <div id="hour"></div>
+    <div id="minute"></div>
+    <div id="second"></div>
+</div>
+</body>
+<script>
+    window.onload = function(){
+        //获取三根指针
+        var hour = document.getElementById('hour');
+        var minute = document.getElementById('minute');
+        var second = document.getElementById('second');
+
+        clock();
+        var timer = setInterval(clock,1000)
+        function clock(){
+            //获取事件对象
+            var date = new Date();
+            //获取当前的时分秒和毫秒
+            var mills = date.getMilliseconds();
+            var s = date.getSeconds(); //   + mills/1000
+            var m = date.getMinutes() + s/60;
+            var h = date.getHours()%12 + m/60 ;
+
+            console.log(h+' '+m+' '+s+' '+mills);
+
+            //旋转
+            hour.style.transform = 'rotate( '+ h*30 +'deg)';
+            minute.style.transform = 'rotate( '+ m*6 +'deg)';
+            second.style.transform = 'rotate( '+ s*6 +'deg)';
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<img id="img" src="img/icon_01.png"><br>
+	<button id="prev">上一张</button>
+	<button id="next">下一张</button>
+</body>
+<script type="text/javascript">
+	window.onload = function () {
+		var oImg = document.getElementById('img')
+		var oPrev = document.getElementById('prev')
+		var oNext = document.getElementById('next')
+		var maxIndex = 9, minIndex = 1, currentIndex = minIndex;
+		oPrev.onclick = function(){
+			if(currentIndex == minIndex){
+				currentIndex = maxIndex;
+			}else{
+				currentIndex -- ;
+			}
+			oImg.setAttribute('src','img/icon_0'+currentIndex+'.png');
+			console.log(oImg.getAttribute('src'));
+		}
+		oNext.onclick = function(){
+			if(currentIndex == maxIndex){
+				currentIndex = minIndex;
+			}else{
+				currentIndex ++ ;
+			}
+
+			oImg.setAttribute('src','img/icon_0'+currentIndex+'.png');
+			console.log(oImg.getAttribute('src'));
+		}
+	}
+</script>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>面向对象</title>
+</head>
+<body>
+<div id="main"></div>
+<script src="rectangle.js"></script>
+<script>
+
+    //实例化对象
+    var rect = new Rect({
+        parentId : 'main',
+        left : 100,
+        top : 100,
+        width : 400,
+        height : 400,
+        backgroundColor: 'blue',
+        border: '10px solid #000 ',
+        borderRadius : 10
+    });
+    rect.render();
+</script>
+</body>
+</html>

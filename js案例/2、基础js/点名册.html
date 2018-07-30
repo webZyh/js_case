@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>点名册</title>
+    <style>
+        #box{
+            text-align: center;
+        }
+        #box button{
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <button id="begin">开始点名</button>
+    <button id="end">结束点名</button>
+    <div class="name-box"></div>
+</div>
+<script>
+    window.onload = function(){
+        var timer = null;
+        var nameArr = ['张三','李四','王五','zyh','jf','zlc','yzh','hello','world'];
+
+        var oBegin = document.getElementById('begin');
+        var oEnd = document.getElementById('end');
+        var oNameBox = document.querySelector('.name-box');
+
+        oNameBox.innerText = nameArr[1];
+        oBegin.onclick = function () {
+            timer = setInterval(function(){
+                var num = parseInt(Math.random()* nameArr.length );
+                oNameBox.innerText = nameArr[num];
+            },20)
+        }
+        oEnd.onclick = function(){
+            clearInterval(timer);
+        }
+    }
+</script>
+</body>
+</html>

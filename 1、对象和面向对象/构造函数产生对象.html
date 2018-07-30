@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		//1、构造函数		工厂模式
+		function Person(){
+			var obj = new Object();
+
+			//属性
+			obj.name = null;
+			obj.age = null;
+			obj.sex = null;
+			//方法
+			obj.study = function(){
+				console.log(this.name+'在学习')
+			}
+
+			return obj;
+		}
+		//构造函数构造出对象,p和p1都为新的对象，且不相等
+		var p = Person();
+		p.name = '张三';
+		p.age = 10;
+		p.sex = '男';
+		p.study();
+		
+		var p1 = Person();
+	</script>
+</body>
+</html>

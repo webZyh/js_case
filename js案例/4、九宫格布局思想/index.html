@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>三列、四列、五列</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    #btn_box{
+        margin: 20px;
+    }
+    #btn_box button{
+        margin-right: 50px;
+    }
+    #cont_box{
+        position: relative;
+    }
+    .img-box{
+        background-color: #d8d8d8;
+        width: 220px;
+        height: 360px;
+        margin:0 15px 15px 0;
+    }
+    .img-box span{
+        color: red;
+        font-size: 12px;
+    }
+</style>
+<body>
+<div id="box">
+    <div id="btn_box">
+        <button>一列</button>
+        <button>三列</button>
+        <button>四列</button>
+        <button>五列</button>
+    </div>
+    <div id="cont_box">
+        <div class="img-box">
+            <img src="image/1.jpg" alt="">
+            <p>好看的电影</p>
+            <span>这部电影真的很好看，一起去看呐</span>
+        </div>
+        <div class="img-box">
+            <img src="image/2.jpg" alt="">
+            <p>好看的电影</p>
+            <span>这部电影真的很好看，一起去看呐</span>
+        </div>
+        <div class="img-box">
+            <img src="image/3.jpg" alt="">
+            <p>好看的电影</p>
+            <span>这部电影真的很好看，一起去看呐</span>
+        </div>
+        <div class="img-box">
+            <img src="image/4.jpg" alt="">
+            <p>好看的电影</p>
+            <span>这部电影真的很好看，一起去看呐</span>
+        </div>
+        <div class="img-box">
+            <img src="image/5.jpg" alt="">
+            <p>好看的电影</p>
+            <span>这部电影真的很好看，一起去看呐</span>
+        </div>
+        <div class="img-box">
+            <img src="image/6.jpg" alt="">
+            <p>好看的电影</p>
+            <span>这部电影真的很好看，一起去看呐</span>
+        </div>
+        <div class="img-box">
+            <img src="image/7.jpg" alt="">
+            <p>好看的电影</p>
+            <span>这部电影真的很好看，一起去看呐</span>
+        </div>
+        <div class="img-box">
+            <img src="image/8.jpg" alt="">
+            <p>好看的电影</p>
+            <span>这部电影真的很好看，一起去看呐</span>
+        </div>
+        <div class="img-box">
+            <img src="image/9.jpg" alt="">
+            <p>好看的电影</p>
+            <span>这部电影真的很好看，一起去看呐</span>
+        </div>
+        <div class="img-box">
+            <img src="image/10.jpg" alt="">
+            <p>好看的电影</p>
+            <span>这部电影真的很好看，一起去看呐</span>
+        </div>
+        <div class="img-box">
+            <img src="image/11.jpg" alt="">
+            <p>好看的电影</p>
+            <span>这部电影真的很好看，一起去看呐</span>
+        </div>
+        <div class="img-box">
+            <img src="image/12.jpg" alt="">
+            <p>好看的电影</p>
+            <span>这部电影真的很好看，一起去看呐</span>
+        </div>
+        <div class="img-box">
+            <img src="image/13.jpg" alt="">
+            <p>好看的电影</p>
+            <span>这部电影真的很好看，一起去看呐</span>
+        </div>
+        <div class="img-box">
+            <img src="image/14.jpg" alt="">
+            <p>好看的电影</p>
+            <span>这部电影真的很好看，一起去看呐</span>
+        </div>
+        <div class="img-box">
+            <img src="image/15.jpg" alt="">
+            <p>好看的电影</p>
+            <span>这部电影真的很好看，一起去看呐</span>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    window.onload = function () {
+        //获取点击事件源
+        var btn = $('btn_box').getElementsByTagName('button');
+        var contBox = $('cont_box');
+
+        btn[0].onclick = function () {
+            flex(1,contBox)
+            /*//定义需要的变量
+            var colNum = 3, distanceX = 220,distanceY = 360, marginXY = 15;
+
+            //选出所有的图片
+            var aImg = $('cont_box').children;
+
+            for(var i=0; i< aImg.length; i++){
+                var row = parseInt(i / colNum);
+                var col = parseInt(i % colNum);
+                //console.log(i+'在第'+row+'行，第'+col+'列');
+
+                //盒子的定位
+                aImg[i].style.position = 'absolute';
+                aImg[i].style.left = col*(distanceX+marginXY)+'px';
+                aImg[i].style.top = row*(distanceY+marginXY)+'px';
+            }*/
+        }
+        btn[1].onclick = function () {
+            flex(3,contBox)
+           /* //定义需要的变量
+            var colNum = 4, distanceX = 220,distanceY = 360, marginXY = 15;
+
+            //选出所有的图片
+            var aImg = $('cont_box').children;
+
+            for(var i=0; i< aImg.length; i++){
+                var row = parseInt(i / colNum);
+                var col = parseInt(i % colNum);
+                //console.log(i+'在第'+row+'行，第'+col+'列');
+
+                //盒子的定位
+                aImg[i].style.position = 'absolute';
+                aImg[i].style.left = col*(distanceX+marginXY)+'px';
+                aImg[i].style.top = row*(distanceY+marginXY)+'px';
+            }*/
+        }
+        btn[2].onclick = function () {
+            flex(4,contBox)
+            /*//定义需要的变量
+            var colNum = 5, distanceX = 220,distanceY = 360, marginXY = 15;
+
+            //选出所有的图片
+            var aImg = $('cont_box').children;
+
+            for(var i=0; i< aImg.length; i++){
+                var row = parseInt(i / colNum);
+                var col = parseInt(i % colNum);
+                //console.log(i+'在第'+row+'行，第'+col+'列');
+
+                //盒子的定位
+                aImg[i].style.position = 'absolute';
+                aImg[i].style.left = col*(distanceX+marginXY)+'px';
+                aImg[i].style.top = row*(distanceY+marginXY)+'px';
+            }*/
+        }
+        btn[3].onclick = function () {
+            flex(5,contBox)
+            /*//定义需要的变量
+            var colNum = 3, distanceX = 220,distanceY = 360, marginXY = 15;
+
+            //选出所有的图片
+            var aImg = $('cont_box').children;
+
+            for(var i=0; i< aImg.length; i++){
+                var row = parseInt(i / colNum);
+                var col = parseInt(i % colNum);
+                //console.log(i+'在第'+row+'行，第'+col+'列');
+
+                //盒子的定位
+                aImg[i].style.position = 'absolute';
+                aImg[i].style.left = col*(distanceX+marginXY)+'px';
+                aImg[i].style.top = row*(distanceY+marginXY)+'px';
+            }*/
+        }
+        //将上面的功能封装成函数
+        function flex(colNum,parentNode) {
+            //定义需要的变量
+            var distanceX = 220,distanceY = 360, marginXY = 15;
+
+            var aImg = parentNode.children;
+            for(var i=0; i< aImg.length; i++){
+                var row = parseInt(i / colNum);
+                var col = parseInt(i % colNum);
+                //console.log(i+'在第'+row+'行，第'+col+'列');
+
+                //盒子的定位
+                aImg[i].style.position = 'absolute';
+                aImg[i].style.left = col*(distanceX+marginXY)+'px';
+                aImg[i].style.top = row*(distanceY+marginXY)+'px';
+            }
+        }
+    }
+    function $(id) {
+        return typeof id == 'string' ? document.getElementById(id) : null;
+    }
+</script>
+</html>

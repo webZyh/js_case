@@ -1,0 +1,25 @@
+body{
+    background-color: #000;
+    position: relative;
+}
+span{
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    background: url("../images/love.png") no-repeat;
+    background-size: 100% 100%;
+
+    animation: flash 2s infinite alternate;
+}
+span:hover{
+    transform: scale(3,3) rotate( 360deg) !important;
+    transition: all 2s;
+}
+@keyframes flash  {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 100;
+    }
+}

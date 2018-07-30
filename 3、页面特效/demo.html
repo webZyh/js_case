@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="fa">
+    <button id="btn"></button>
+</div>
+<script>
+    //阻止冒泡
+    /*document.getElementById('btn').onclick = function (event) {
+        if(event && event.stopPropagation){
+            event.stopPropagation();
+        }else{
+            event.cancelBubble = true;
+        }
+    }*/
+
+    var str = 'hello hao are you';
+    console.log(str.split(' '));
+    console.log([...str]);
+</script>
+</body>
+</html>

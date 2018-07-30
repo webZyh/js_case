@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>放大镜</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            border: none;
+            list-style: none;
+        }
+        img{
+            vertical-align: top;
+        }
+        #box{
+            width: 350px;
+            height: 350px;
+            position: relative;
+            margin: 50px 0 0 100px;
+        }
+        #box .small-box{
+            width: 350px;
+            height: 350px;
+            position: relative;
+            border: 1px solid #ccc;
+        }
+        .small-box span{
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: rgba(255 , 255 , 0 , .3);
+            display: none;
+            cursor: move;
+        }
+        #box .big-box{
+            width: 800px;
+            height: 600px;
+            border: 1px solid #ccc;
+            position: absolute;
+            left: 360px;
+            top: 0;
+            overflow: hidden;
+            display: none;
+        }
+        #box .big-box img{
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        #list{
+            margin:5px 0 0 97px;
+        }
+        #list img{
+            border: 1px solid #ccc;
+            margin: 3px;
+            cursor: pointer;
+            padding-left: 2px;
+            padding-right: 2px;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <div class="small-box">
+        <img src="images/pic001.jpg" alt="">
+        <span id="mask"></span>
+    </div>
+    <div class="big-box">
+        <img src="images/pic01.jpg" alt="">
+    </div>
+</div>
+<div id="list">
+    <img src="images/pic0001.jpg" alt=""><img src="images/pic0002.jpg" alt=""><img src="images/pic0003.jpg" alt="">
+</div>
+</body>
+<script>
+    window.onload = function(){
+        //1、选出标签
+        var oBox = document.getElementById('box');
+        var oSmallBox = oBox.children[0];
+        var oBigBox = oBox.children[1];
+        var oBigImg = oBigBox.children[0];
+
+        var oMask = document.getElementById('mask');
+        var oList = document.getElementById('list');
+        var aImg = oList.querySelectorAll('img');
+
+        //2、监听鼠标进入小盒子
+        oSmallBox.onmouseover = function(){
+            oMask.style.display = 'block';
+            oBigBox.style.display = 'block';
+
+            //2.1   计算鼠标进入小盒子的x，y值，并将其赋给mask盒子
+            oSmallBox.onmousemove = function(event){
+                var e = event || window.event;
+                var pointX = e.clientX - oSmallBox.offsetParent.offsetLeft - oMask.offsetWidth/2;
+                var pointY = e.clientY - oSmallBox.offsetParent.offsetTop - oMask.offsetHeight/2;
+                //console.log(pointX+','+pointY);
+
+                //2.2 边界控制，防止放大镜跑出小图
+                if(pointX <= 0 ){
+                    pointX = 0 ;
+                }else if(pointX >= oSmallBox.offsetWidth - oMask.offsetWidth){
+                    pointX = oSmallBox.offsetWidth - oMask.offsetWidth - 2;
+                }
+                if(pointY <= 0 ){
+                    pointY = 0 ;
+                }else if(pointY >= oSmallBox.offsetHeight - oMask.offsetHeight){
+                    pointY = oSmallBox.offsetHeight - oMask.offsetHeight - 2;
+                }
+                oMask.style.left = pointX + 'px';
+                oMask.style.top = pointY + 'px';
+                //放大镜在小图上移动，大图也跟着移动
+                //小图和大图移动的距离比等于小图和大图的大小比
+                var pointBigX = pointX / (oSmallBox.offsetWidth / oBigBox.offsetWidth);
+                var pointBigY = pointY / (oSmallBox.offsetHeight / oBigBox.offsetHeight);
+                oBigImg.style.left = - pointBigX + 'px';
+                oBigImg.style.top = - pointBigY + 'px';
+            }
+        }
+
+        //3、监听鼠标离开小盒子
+        oSmallBox.onmouseout = function(){
+            oMask.style.display = 'none';
+            oBigBox.style.display = 'none';
+        }
+
+        //4、 鼠标划入小盒子切换图片
+        for(var i=0; i<aImg.length; i++){
+
+                (function(i){
+                    aImg[i].onmouseover = function(){
+                        oSmallBox.children[0].src = 'images/pic00'+ (i+1) +'.jpg';
+                        oBigBox.children[0].src = 'images/pic0'+ (i+1) +'.jpg';
+                    }
+                })(i);
+
+        }
+
+    }
+</script>
+</html>

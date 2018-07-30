@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<script type="text/html">
+//构造函数
+function Dog(name, age, friends){
+	//属性
+	this.name = name;
+	this.age = age;
+	this.friends = friends;
+
+	//方法
+	this.eat = function(something){
+		console.log(this.name + '在吃' + something);
+	}
+	this.run = function(somewhere){
+		console.log(this.name + '跑' + somewhere);
+	}
+}
+//构造对象,小狗1
+var smallDog = new Dog('小花',2);
+smallDog.age = 1;
+console.log(smallDog);
+smallDog.eat('奶')
+smallDog.run('深圳湾');
+
+//构造对象，小狗2
+var bigDog = new Dog('大花',10,['旺财','小虎']);
+console.log(bigDog);
+</script>
+<script type="text/javascript">
+//构造函数 			构造函数模式（工厂模式的改进）
+function Dog(option){	//将对象作为函数的参数传递
+	//属性
+	this.name = option.name;
+	this.age = option.age;
+	this.friends = option.friends;
+
+	//方法
+	this.eat = function(something){
+		console.log(this.name + '在吃' + something);
+	}
+	this.run = function(somewhere){
+		console.log(this.name + '跑' + somewhere);
+	}
+}
+//构造对象,小狗1
+var smallDog = new Dog({name:'小花', age: 1});
+smallDog.age = 1;
+console.log(smallDog);
+smallDog.eat('奶')
+smallDog.run('深圳湾');
+
+//构造对象，小狗2
+var bigDog = new Dog({name:'大花',age:10, friends:['旺财','小虎']});
+console.log(bigDog);	
+</script>
+</body>
+</html>

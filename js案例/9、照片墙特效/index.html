@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>照片墙</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            border: none;
+            list-style: none;
+            vertical-align: top;
+        }
+        html , body , ul {
+            width: 100%;
+            height: 100%;
+        }
+        #ps{
+            position: relative;
+        }
+        #ps li{
+            width: 250px;
+            height: 360px;
+            cursor: pointer;
+            box-shadow: 0 0 10px #000;
+            transition: all 1s;
+        }
+        #ps li.active{
+            left: 50% !important;
+            top: 50% !important;
+            transform: translate(-50% , -50%) rotate(0) scale(1.5,1.5) !important;
+            z-index: 99;
+        }
+    </style>
+</head>
+<body>
+<ul id="ps"></ul>
+</body>
+<script src="js/Underscore-min.js"></script>
+<script>
+    window.onload = function(){
+        //1、选出需要的标签
+        var oUl = document.getElementById('ps');
+
+        //2、动态循环创建li和img标签，并将其插入ul中
+        for (var i=0; i<9; i++){
+            //2.1 创建li
+            var oLi = document.createElement('li');
+            oUl.appendChild(oLi);
+
+            // 2.2 创建img
+            var oImg = document.createElement('img');
+            oImg.src = 'images/pic' + (i+1) + '.jpg';
+            oLi.appendChild(oImg);
+
+        }
+
+        // 3、获取所有的Li标签
+        var aLi = document.getElementById('ps').children;
+        //console.log(aLi);
+
+        // 3、获取屏幕的宽高，减去照片的宽高，就是照片所能随机出现的区域
+        var screenX = document.documentElement.clientWidth - oLi.offsetWidth - 40;
+        var screenY = document.documentElement.clientHeight - oLi.offsetHeight - 40;
+
+        for(var i=0; i<aLi.length; i++){
+            //  获取单个的li
+            var oLi = aLi[i];
+
+            // 4、将照片随机放入刚刚的区域内
+            oLi.style.position = 'absolute';
+            oLi.style.left = _.random(40,screenX) + 'px';
+            oLi.style.top = _.random(40,screenY) + 'px';
+
+            // 5、照片随机旋转放置
+
+            oLi.style.transform = 'rotate(' + _.random(0,360) + 'deg)';
+
+            //点击某张图片，使其放大居中显示
+            oLi.onclick = function(){
+                for(var i = 0; i<aLi.length; i++){
+                    aLi[i].className = '';
+                }
+                this.className = 'active';
+            }
+
+        }
+
+    }
+</script>
+</html>

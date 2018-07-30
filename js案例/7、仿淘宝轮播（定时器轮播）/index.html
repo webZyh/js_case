@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图片轮播</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+            color:#000;
+        }
+        #box{
+            width: 342px;
+            height: 308px;
+            border: 1px solid #ccc;
+            margin: 100px auto;
+            position: relative;
+            overflow: hidden;
+        }
+        .left , .right{
+            width: 60px;
+            height: 308px;
+            position: absolute;
+            top: 0;
+        }
+        .left {
+            left: 0;
+        }
+        .right{
+            right: 0;
+        }
+        .center{
+            position: absolute;
+            width: 220px;
+            height: 308px;
+            left: 60px;
+            top: 0;
+            border-left: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+        }
+        li{
+            text-align: center;
+            line-height: 38px;
+            border-bottom: 1px solid #ccc;
+        }
+        .left li:last-child , .right li:last-child{
+            border-bottom: none;
+        }
+        .active{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <ul class="left">
+        <li class="active"><a href="#">图片1</a></li>
+        <li><a href="#">图片2</a></li>
+        <li><a href="#">图片3</a></li>
+        <li><a href="#">图片4</a></li>
+        <li><a href="#">图片5</a></li>
+        <li><a href="#">图片6</a></li>
+        <li><a href="#">图片7</a></li>
+        <li><a href="#">图片8</a></li>
+    </ul>
+    <div class="center">
+        <a href="#"><img src="image/1.jpg" alt="" width="220px" height="308px"></a>
+        <a href="#"><img src="image/2.jpg" alt="" width="220px" height="308px"></a>
+        <a href="#"><img src="image/3.jpg" alt="" width="220px" height="308px"></a>
+        <a href="#"><img src="image/4.jpg" alt="" width="220px" height="308px"></a>
+        <a href="#"><img src="image/5.jpg" alt="" width="220px" height="308px"></a>
+        <a href="#"><img src="image/6.jpg" alt="" width="220px" height="308px"></a>
+        <a href="#"><img src="image/7.jpg" alt="" width="220px" height="308px"></a>
+        <a href="#"><img src="image/8.jpg" alt="" width="220px" height="308px"></a>
+        <a href="#"><img src="image/9.jpg" alt="" width="220px" height="308px"></a>
+        <a href="#"><img src="image/1.jpg" alt="" width="220px" height="308px"></a>
+        <a href="#"><img src="image/10.jpg" alt="" width="220px" height="308px"></a>
+        <a href="#"><img src="image/11.jpg" alt="" width="220px" height="308px"></a>
+        <a href="#"><img src="image/12.jpg" alt="" width="220px" height="308px"></a>
+        <a href="#"><img src="image/13.jpg" alt="" width="220px" height="308px"></a>
+        <a href="#"><img src="image/14.jpg" alt="" width="220px" height="308px"></a>
+        <a href="#"><img src="image/15.jpg" alt="" width="220px" height="308px"></a>
+    </div>
+    <ul class="right">
+        <li><a href="#">图片9</a></li>
+        <li><a href="#">图片10</a></li>
+        <li><a href="#">图片11</a></li>
+        <li><a href="#">图片12</a></li>
+        <li><a href="#">图片13</a></li>
+        <li><a href="#">图片14</a></li>
+        <li><a href="#">图片15</a></li>
+        <li><a href="#">图片16</a></li>
+    </ul>
+</div>
+<script>
+    window.onload = function(){
+        //1、选出需要的标签
+        var aLi = document.querySelectorAll('li');
+        var aImg = document.querySelector('.center').querySelectorAll('img');
+
+        //定义变量
+        var timer = null , loop = 0;
+
+        //运动函数
+        function play(){
+            loop += 1;
+            loop %= 16;
+            for(var i = 0; i<aLi.length; i++){
+                aLi[i].className = '';
+                aImg[i].style.display = 'none';
+            }
+            aLi[loop].className = 'active';
+            aImg[loop].style.display = 'block';
+
+        }
+        clearInterval( timer );
+        //开启定时器
+        timer = setInterval(play ,1000);
+
+        //鼠标划入图片时停止播放
+        document.querySelector('.center').onmouseover = function(){
+            clearInterval(timer);
+        }
+        //鼠标划出图片时继续播放
+        document.querySelector('.center').onmouseout = function(){
+            //开启定时器
+            timer = setInterval(play ,1000);
+        }
+    }
+</script>
+</body>
+</html>

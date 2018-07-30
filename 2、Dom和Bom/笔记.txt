@@ -1,0 +1,67 @@
+dom访问关系	节点的访问关系，是以属性的方式存在的
+------------------------------------------------------
+获取节点
+1、父节点	parentNode
+2、兄弟节点	下一个兄弟	nextSibling		ie/6/7/8
+				nextElementSibling	ie9+/ff/chrome
+
+		上一个兄弟	previousSibling
+
+3、单个节点	第一个子节点	firstChild		ie6/7/8
+				firstElementChild
+
+		最后一个子节点	lastChild
+				lastElementChild
+
+		所有的子节点	childNodes		获取所有的节点，包挂html节点和文本节点	nodeType==1 表示元素节点
+
+				children		获取所有的元素节点
+
+------------------------------------------------------
+节点的增删改查
+
+----
+增加（先创建，在插入）
+1、创建
+document.createElement('标签名')	创建html标签,是document的全局方法
+2、插入
+a、要放进的父盒子.appendChild('增加的元素变量名')
+b、要放进的父盒子insertBefore('增加的元素变量名','要插入某某之前的变量名')
+
+
+2、删除
+自己.parentNode.removeChild('自己')	//找到父元素，再删除自己
+
+自己.remove()	//直接删除自己
+
+------------------------------------------------------
+复制节点
+
+新节点 = 要复制的节点.cloneNode(参数)
+参数：	false：只拷贝要复制节点自己
+	true：拷贝要辅助节点里的所有东西
+
+------------------------------------------------------
+css3动画
+transform属性
+translate（100px,100px）:平移
+rotate(90°):旋转
+scale（1.5倍）：放大
+
+------------------------------------------------------
+
+输入框事件
+
+获得焦点：onfocus
+失去焦点：onblur
+------------------------------------------------------
+Date()对象方法
+getDate()	获取日	1-31
+getDay()	获取星期	0-6
+getMonth()	获取月	0-11
+getFullYear()	获取年份
+getHours()
+getMinutes()
+getSeconds()
+getMilliseconds()	获取毫秒	1s = 1000ms
+getTime()	返回累计毫秒数（从197/1/1午夜）时间戳

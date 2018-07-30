@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>表单验证</title>
+	<style type="text/css">
+		#tip{
+			color:lightgray;
+			font-size: 14px; 
+		}
+		#score{
+			padding-left: 5px; 
+			border:1px solid #000;
+		}
+		.right{
+			color: green !important; 
+		}
+		.error{
+			color: red !important;
+		}
+	</style>
+</head>
+<body>
+<div id="box">
+	<label>成绩：</label>
+	<input id="score" type="text" name="" placeholder="请输入你的成绩">
+	<span id="tip">请输入您的成绩</span>
+</div>
+</body>
+<script type="text/javascript">
+	window.onload = function(){
+		//输入框失去焦点时验证输入的成绩
+		$('score').onblur = function(){
+			var value = parseFloat(this.value)
+			if(isNaN(value)){
+				//1、输入的不是数字
+				// $('tip').innerText = '请输入正确的成绩';
+				// $('tip').className = 'error';
+				// this.style.borderColor = 'red';
+				dealStyle('请输入正确的成绩','error','red');
+			}else if(value<=100 && value>=0){
+				//2、输入正确的成绩
+				// $('tip').innerText = '输入的成绩正确';
+				// $('tip').className = 'right';
+				// this.style.borderColor = 'green';
+				dealStyle('输入的成绩正确','right','green');
+			}else{
+				//3、输入的成绩不在0-100内
+				// $('tip').innerText = '请输0-100内的数字';
+				// $('tip').className = 'error';
+				// this.style.borderColor = 'red';
+				dealStyle('请输0-100内的数字','error','red');
+			}
+		}
+
+		$('score').onfocus = function(){
+			// $('tip').innerText = '请输入您的成绩';
+			// $('tip').className = '';
+			// this.style.borderColor = '#000';
+			dealStyle('请输入您的成绩','','#000');
+			this.value = ''
+		}
+
+		//封装一个处理样式的函数,简化代码
+		function dealStyle(msg,className,color){
+			$('tip').innerText = msg;
+			$('tip').className = className;
+			$('score').style.borderColor = color;
+		};
+	}
+	function $(id){
+		return typeof id === 'string' ? document.getElementById(id) : null;
+	}
+</script>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>拖动进度条</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            border: none;
+        }
+        #progress{
+            width: 1000px;
+            height: 15px;
+            margin: 100px auto;
+            position: relative;
+        }
+        #progress_bar{
+            width: 900px;
+            height: 100%;
+            background-color: #d8d8d8;
+            position: relative;
+            border-radius: 8px;
+        }
+        #progress_bar span{
+            width: 19px;
+            height: 19px;
+            background-color: orangered;
+            border-radius: 50%;
+            position: absolute;
+            left: 0;
+            top: -2px;
+            cursor: pointer;
+        }
+        #progress_bar_fg{
+            width: 0;
+            height: 100%;
+            background-color: orangered;
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+        }
+        #progress_value{
+            position: absolute;
+            right: 30px;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="progress">
+    <div id="progress_bar">
+        <div id="progress_bar_fg"></div>
+        <span></span>
+    </div>
+    <div id="progress_value">0%</div>
+</div>
+</body>
+<script>
+    window.onload = function(){
+        var oProg = document.getElementById('progress');
+        var oProgBar = oProg.children[0];
+        var oProgValue = oProg.children[1];
+        var oProgBarFg  = oProgBar.children[0];
+        var oMask  = oProgBar.children[1];
+
+        //鼠标按下
+        oMask.onmousedown = function(ev){
+            var e = ev || window.ev;
+            var originLeft  = e.clientX - this.offsetLeft;
+            document.onmousemove = function (ev) {
+                var e = ev || window.ev;
+                var x = e.clientX - originLeft;
+
+                var half = oMask.offsetWidth/2; // 小圆点的一半值
+                //边界值判定
+                if(x<0){
+                    x = 0;
+                }else if(x >= oProgBar.offsetWidth - oMask.offsetWidth + oMask.offsetWidth){
+                    x = oProgBar.offsetWidth - oMask.offsetWidth + oMask.offsetWidth;
+                }
+                oMask.style.left = (x- half) + 'px';    //让小圆点的一半贴近进度条
+
+                //进度条阴影
+                oProgBarFg.style.width = x + 'px';
+
+                //oProgValue    value值填充
+                var value = parseInt( x / oProgBar.offsetWidth * 100);
+                /*console.log(x);
+                console.log(oProgBar.offsetWidth);*/
+                oProgValue.innerText = value + '%';
+
+                return false;
+            }
+        }
+        document.onmouseup = function(){
+            document.onmousemove = null;
+        }
+    }
+</script>
+</html>

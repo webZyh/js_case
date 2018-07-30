@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button id="btn">隐藏</button><br>
+	<img src="img/img_01.jpg">
+</body>
+<script type="text/javascript">
+	window.onload = function(){
+		//1、获取事件源和相关的元素
+		var oBtn = document.getElementById('btn');
+		var oImg = document.getElementsByTagName('img')[0];
+
+		//2、绑定事件
+		oBtn.onclick = function(){
+			//3、事件的驱动程序
+			if(oBtn.innerText == '隐藏'){
+				oImg.style.display = 'none';
+				oBtn.innerText = '显示';
+			}else{
+				oImg.style.display = 'block';
+				oBtn.innerText = '隐藏';
+			}
+		}
+	}
+</script>
+</html>

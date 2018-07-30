@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box{
+            margin-top: 100px;
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            background-color: red;
+            left: 0;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+<button id="btn1">改变透明度</button>
+<div id="box"></div>
+<script src="js/func.js"></script>
+<script>
+    window.onload = function(){
+        $("btn1").onclick = function(){
+            buffer3($("box") , {"opacity": 0.5 });
+        }
+    }
+</script>
+</body>
+</html>

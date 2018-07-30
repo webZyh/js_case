@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>发表评论</title>
+</head>
+<style type="text/css">
+	*{
+		margin:0;
+		padding:0;
+		list-style: none;
+	}
+	textarea{
+		resize:none;
+		width: 480px;
+	}
+	#box{
+		border:1px solid #ccc;
+		padding:20px;
+		margin: 100px auto;
+		width: 500px;
+	}
+	#ul{
+		margin:0 20px;
+	}
+	#ul li{
+		border-bottom: 1px dashed #ccc;
+		line-height: 44px;
+		color:red;
+	}
+	#ul li a{
+		float: right;
+	}
+</style>
+<body>
+<div id="box">
+	<div class="box-top">
+		<label>发表评论：</label><br>
+		<textarea id="textarea" rows='10' cols="60" draggable="false"></textarea><br>
+		<button id="btn">发表</button>
+	</div>
+	<ul id="ul">
+		<!-- <li>aaaaaaaa<a href="javascript:;">删除</a></li> -->
+	</ul>
+</div>
+</body>
+<script type="text/javascript">
+	window.onload = function(){
+		$('btn').onclick = function(){
+			var content = $('textarea').value;
+			//console.log(content);
+			if(content.length === 0){
+				alert('请输入评论的内容!');
+				return;
+			}
+
+			//发表后清空输入框
+			$('textarea').value = '';
+			//动态创建li，并把创建的li插入ul的第一位
+			var oLi = document.createElement('li');
+			oLi.innerHTML = content + '<a href="javascript:;">删除</a>';
+			$('ul').insertBefore(oLi,$('ul').children[0]);
+
+			//点击删除，删掉发表的内容
+			var aA = $('ul').getElementsByTagName('a');
+			//遍历循环a标签，添加点击事件
+			for(var i=0; i<aA.length; i++){
+				aA[i].onclick = function(){
+					this.parentNode.remove();
+				}
+			}
+		}
+	}
+	function $(id){
+		return typeof id === 'string' ? document.getElementById(id) : null;
+	}
+</script>
+</html>
